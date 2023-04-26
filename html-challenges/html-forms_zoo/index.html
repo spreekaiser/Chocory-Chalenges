@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>HTML Zoo Form</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <section aria-label="contact">
+      <h2 id="form-heading">Zoo Visitor Sign Up</h2>
+      <p id="form-description">
+        Please provide all necessary information on your stay with us.
+      </p>
+
+      <form aria-labelledby="form-heading" aria-describedby="form-description">
+        <fieldset>
+          <legend>Enter your information</legend>
+
+          <!-- Email: label & input -->
+          <label for="email">Your Email:</label>
+          <input type="text" id="email" name="email" />
+
+          <!-- Date: label & input -->
+          <label for="date">Your visit date</label>
+          <input type="date" id="date" name="date" />
+
+          <fieldset class="radio-options">
+            <legend>Which one of these animals would you like to visit?</legend>
+
+            <!-- Radio Buttons: labels & inputs -->
+            <input type="radio" name="animals" id="Lions" value="lions" />
+            <label for="lions">Lions</label>
+            <input type="radio" name="animals" id="monkeys" value="monkeys" />
+            <label for="monkeys">Monkeys</label>
+            <input type="radio" name="animals" id="delfines" value="delfines" />
+            <label for="delfines">Delfines</label>
+            <input
+              type="radio"
+              name="restaurant"
+              id="restaurant"
+              value="restaurant"
+              checked
+            />
+            <label for="restaurant">Just the restaurant</label>
+          </fieldset>
+
+          <!-- Textarea: label & input -->
+          <label for="message">Your message to us</label>
+          <textarea name="message" id="message" cols="30" rows="10">
+               max 1000 characters
+          </textarea>
+
+          <!-- Two Checkboxes: labels & inputs -->
+          <input type="checkbox" name="day-time" id="day-time" />
+          <label for="day-time">During the daytime</label>
+          <input type="checkbox" name="night-time" id="night-time" />
+          <label for="night-time">During the nighttime</label>
+          <!-- Two Buttons: reset & submit -->
+        </fieldset>
+      </form>
+    </section>
+  </body>
+</html>
