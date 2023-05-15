@@ -5,6 +5,6 @@ export default function App() {
   return <Sum a={1} b={2} />;
 }
 
-function Sum(props) {
-  return <p>{props.a + props.b}</p>;
+function Sum({ a, b }) {
+  return <p>{a + b}</p>;
 }

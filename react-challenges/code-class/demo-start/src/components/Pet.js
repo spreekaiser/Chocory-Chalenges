@@ -1,11 +1,10 @@
 import React from "react";
 
-export default function Pet() {
+export default function Pet({ animal, icon, color, cuteness }) {
   return (
     <div>
-      Meow{" "}
-      <span role="img" aria-label="A cat">
-        🐈
+      <span>
+        {animal} {icon} {color} {cuteness}
       </span>
     </div>
   );

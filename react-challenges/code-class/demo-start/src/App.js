@@ -5,9 +5,9 @@ import Pet from "./components/Pet";
 export default function App() {
   return (
     <div>
-      <Pet />
-      <Pet />
-      <Pet />
+      <Pet animal="A kanguru" icon="🦘" />
+      <Pet animal="A orangutan" icon="🦧" cuteness="very cute" />
+      <Pet animal="A flamingo" icon="🦩" color="pink" />
     </div>
   );
 }
