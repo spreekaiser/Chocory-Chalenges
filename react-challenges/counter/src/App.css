@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--light-pink);
+    display: flex;
+    flex-direction: column;
+}

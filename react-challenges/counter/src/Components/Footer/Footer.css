@@ -1,0 +1,11 @@
+.footer {
+    background-color: var(--dark-pink);
+
+    text-align: center;
+    padding: 5px;
+
+    color: var(--dark-blue);
+    /* font-weight: lighter; */
+    font-size: 15px;
+    padding: 10px;
+}

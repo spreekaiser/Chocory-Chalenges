@@ -1,0 +1,6 @@
+.header {
+    color: var(--light-blue);
+    font-weight: lighter;
+    font-size: 28px;
+    padding: 10px;
+}
