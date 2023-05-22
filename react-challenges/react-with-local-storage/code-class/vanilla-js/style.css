@@ -1,0 +1,31 @@
+@import './global.css';
+
+#cookiebanner {
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+
+    padding: 10px;
+    background-color: var(--dark-blue);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+}
+
+#cookiebanner h4 {
+    color: var(--white);
+    font-weight: 500;
+}
+
+button {
+    padding: 15px;
+    padding: 0.5rem 1rem;
+
+    background-color: var(--turquoise);
+    /* font-size: 20px; */
+    color: var(--dark-blue);
+
+    border: 2px solid var(--bark-turquoise);
+    border-radius: 12px;
+}

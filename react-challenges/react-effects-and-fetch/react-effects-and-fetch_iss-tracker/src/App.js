@@ -11,12 +11,15 @@ export default function App() {
     latitude: 0,
   });
 
+  async function getISSCoords() {
+    const response = await fetch(URL);
+    const data = await response.json();
+    // console.log(data.longitude);
+    setCoords({ longitude: data.longitude, latitude: data.latitude });
+  }
+
   useEffect(() => {
-    async function getISSCoords() {
-      const response = await fetch(URL);
-      const data = await response.json();
-    }
-    // getISSCoords();
+    getISSCoords();
   }, []);
 
   return (
@@ -25,7 +28,7 @@ export default function App() {
       <Controls
         longitude={coords.longitude}
         latitude={coords.latitude}
-        // onRefresh={getISSCoords}
+        onRefresh={getISSCoords}
       />
     </main>
   );
