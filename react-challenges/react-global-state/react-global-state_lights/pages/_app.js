@@ -55,7 +55,12 @@ export default function App({ Component, pageProps }) {
     console.log("App ID:", id);
     console.log("App isOn:", isOn);
 
-    setIsOn((isOn) => !isOn);
+    setLights(
+      lights.map((light) => {
+        light.id === id ? { ...lights, isOn: !isOn } : light;
+      })
+    );
+    // setIsOn((isOn) => !isOn);
   }
 
   return (
