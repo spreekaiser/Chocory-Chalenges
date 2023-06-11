@@ -25,4 +25,16 @@ export default async function handler(request, response) {
 
     response.status(200).json(product);
   }
+
+  if (request.method === "DELETE") {
+    const product = await Product.findByIdAndDelete(id, {
+      $set: request.body,
+    });
+
+    if (!product) {
+      return response.status(404).json({ status: "Not Found" });
+    }
+
+    response.status(200).json({ status: "Successfully deleted" });
+  }
 }
