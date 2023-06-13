@@ -7,6 +7,11 @@ export default function ProductForm({ onSubmit }) {
 
   async function handleSubmit(event) {
     // event.preventDefault();
+    // console.log("Event: ", event);
+
+    // const formData = new FormData(event.target);
+    // const data = Object.fromEntries(formData);
+
     onSubmit(event);
   }
 

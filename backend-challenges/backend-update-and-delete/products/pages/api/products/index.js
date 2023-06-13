@@ -18,11 +18,6 @@ export default async function handler(request, response) {
         console.error(error);
         return response.status(400).json({ error: error.message });
       }
-    case "PUT":
-      const productToUpdate = await Joke.findByIdAndUpdate(id, {
-        $set: request.body,
-      });
-      return response.status(200).json(productToUpdate);
   }
 
   // if (request.method === "GET") {

@@ -6,12 +6,12 @@ import Comments from "../Comments";
 import { useState } from "react";
 import ProductForm from "../ProductForm";
 
-export default function Product(onSubmit) {
+export default function Product({ onSubmit }) {
   const router = useRouter();
   const { id } = router.query;
 
   const { data, isLoading } = useSWR(id ? `/api/products/${id}` : null);
-  const { isEditMode, setIsEditMode } = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   if (!data) return;
 
@@ -38,7 +38,7 @@ export default function Product(onSubmit) {
       >
         Toggle Editmode
       </button>
-      {isEditMode && <ProductForm onSumbit={onSubmit} />}
+      {isEditMode && <ProductForm onSubmit={onSubmit} />}
     </ProductCard>
   );
 }
