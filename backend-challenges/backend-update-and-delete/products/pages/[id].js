@@ -4,7 +4,7 @@ import useSWRMutation from "swr/mutation";
 
 export default function ProductDetailsPage() {
   const router = useRouter();
-  const { query, push } = router;
+  const { push } = router;
   const { id } = router.query;
 
   async function updateProduct(url, { arg }) {
@@ -29,10 +29,15 @@ export default function ProductDetailsPage() {
   );
 
   async function handleEditProduct(event) {
+    event.preventDefault();
     const formData = new FormData(event.target);
     const productData = Object.fromEntries(formData);
     await trigger(productData);
     push("/");
+  }
+
+  if (isMutating) {
+    return <p>Submitting your changes.</p>;
   }
 
   return (

@@ -5,18 +5,18 @@ import { StyledButton } from "../Button/Button.styled";
 export default function ProductForm({ onSubmit }) {
   // const products = useSWR("/api/products");
 
-  async function handleSubmit(event) {
-    // event.preventDefault();
-    // console.log("Event: ", event);
+  // async function handleSubmit(event) {
+  // event.preventDefault();
+  // console.log("Event: ", event);
 
-    // const formData = new FormData(event.target);
-    // const data = Object.fromEntries(formData);
+  // const formData = new FormData(event.target);
+  // const data = Object.fromEntries(formData);
 
-    onSubmit(event);
-  }
+  //   onSubmit(event);
+  // }
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm onSubmit={onSubmit}>
       <StyledHeading>Add a new Fish</StyledHeading>
       <StyledLabel htmlFor="name">
         Name:
