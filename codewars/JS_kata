@@ -1,0 +1,65 @@
+// Codewars challenges in JavaScript
+
+// strainth of 7
+
+// Complete the method that takes a sequence of objects with two keys each: country or state,
+// and capital.Keys may be symbols or strings.
+// The method should return an array of sentences declaring the state or country and its capital.
+function capital(capitals) {
+  return capitals.map((capital) => {
+    // const key = capital.state ? 'state' : 'country'
+    return `The capital of ${capital.state || capital.country} is ${
+      capital.capital
+    }`;
+  });
+}
+
+capital([{ country: "Spain", capital: "Madrid" }]);
+capital([
+  { state: "Maine", capital: "Augusta" },
+  { country: "Spain", capital: "Madrid" },
+]);
+
+// Create a function that takes an integer as an argument and returns "Even" for even numbers or "Odd" for odd numbers.
+function evenOrOdd(num) {
+  let res = num % 2;
+  return res == 0 ? "even" : "odd";
+}
+
+evenOrOdd(4);
+
+// In this kata you will create a function that takes a list of non-negative integers and strings
+// and returns a new list with the strings filtered out
+let l = [1, "a", "b", 0, 15];
+
+function filter_list(l) {
+  let filter = l.filter((element) => {
+    console.log(typeof element);
+    if (typeof element == "number") {
+      console.log(element);
+      if (element === 0) {
+        return "0";
+      }
+      return element;
+    }
+  });
+  return filter;
+}
+
+filter_list(l);
+// In this way I wrote: returning 0 is falsy! That's why there is the doble check for the element === 0
+// better solution where:
+function filter_list(l) {
+  return l.filter(function (v) {
+    return typeof v == "number";
+  });
+}
+
+// better version of my try:
+function filter_list(l) {
+  let filter = l.filter((element) => {
+    console.log(typeof element);
+    return typeof element == "number";
+  });
+  return filter;
+}
