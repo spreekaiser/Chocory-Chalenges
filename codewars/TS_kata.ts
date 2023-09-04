@@ -31,4 +31,45 @@ export function catMouse(x: string): string {
 
 catMouse("C...m");
 
-//
+// smaler version:
+export function catMouse1(x: string): string {
+  return x.indexOf("m") - x.indexOf("C") > 4 ? "Escaped!" : "Caught!";
+}
+
+catMouse1("C...m");
+
+// Dog between Cat and mouse protect the mouse
+export function catMouse2(x: string, j: number): string {
+  let indexCat: number = x.indexOf("C");
+  let indexMouse: number = x.indexOf("m");
+  let indexDog: number = x.indexOf("D");
+  let mouseCatDiff: number = indexMouse - indexCat;
+  console.log(indexCat, indexMouse, indexDog);
+  console.log(mouseCatDiff);
+
+  if (indexDog == -1 || indexCat == -1 || indexMouse == -1) {
+    return "boring without all three";
+  }
+  if (mouseCatDiff > 0) {
+    if (indexMouse - indexCat <= j) {
+      return indexDog > indexCat && indexDog < indexMouse
+        ? "Protected!"
+        : "Caught!";
+    } else {
+      return "Escaped!";
+    }
+  }
+  console.log(indexCat - indexMouse);
+  if (mouseCatDiff < 0) {
+    if (indexCat - indexMouse <= j) {
+      return indexDog > indexMouse && indexDog < indexCat
+        ? "Protected!"
+        : "Caught!";
+    } else {
+      return "Escaped!";
+    }
+  }
+  return "is nich";
+}
+
+catMouse2("....m.....D....C..................", 9);
