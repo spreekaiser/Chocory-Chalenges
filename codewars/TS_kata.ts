@@ -73,3 +73,24 @@ export function catMouse2(x: string, j: number): string {
 }
 
 catMouse2("....m.....D....C..................", 9);
+
+// Given an array of integers, find the one that appears an odd number of times.
+// There will always be only one integer that appears an odd number of times.
+const findOdd = (numArray: number[]): number => {
+  let oddNum: number = 0;
+  for (let i: number = 0; i < numArray.length; i++) {
+    let currentNum: number = 0;
+    numArray.forEach((num: number) => {
+      if (numArray[i] == num) {
+        currentNum += 1;
+      }
+    });
+    if (currentNum % 2 != 0) {
+      oddNum = numArray[i];
+    }
+  }
+
+  return oddNum;
+};
+
+console.log(findOdd([20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5]));
