@@ -94,3 +94,45 @@ const findOdd = (numArray: number[]): number => {
 };
 
 console.log(findOdd([20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5]));
+
+// Write a function that takes a string of braces, and determines if the order of the braces is valid.
+// It should return true if the string is valid, and false if it's invalid.
+// All input strings will be nonempty, and will only consist of parentheses, brackets and curly braces: ()[]{}
+
+// 1st try:
+export function validBraces(braces: string): boolean {
+  let bracetState: boolean = false;
+  const bracesArray: string[] = braces.split("");
+  let openA: number = 0,
+    endA: number = 0,
+    openB: number = 0,
+    endB: number = 0,
+    openC: number = 0,
+    endC: number = 0;
+  bracesArray.forEach((brac) => {
+    switch (brac) {
+      case "(":
+        openA += 1;
+        break;
+      case ")":
+        endA += 1;
+        break;
+      case "[":
+        openB += 1;
+        break;
+      case "]":
+        endB += 1;
+        break;
+      case "{":
+        openC += 1;
+        break;
+      case "}":
+        endC += 1;
+        break;
+    }
+  });
+  if (openA === endA && openB === endB && openC === endC) {
+    bracetState = true;
+  }
+  return bracetState;
+} // just checks the numbers of bracets - not the order
