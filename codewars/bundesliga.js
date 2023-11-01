@@ -3,15 +3,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.table = void 0;
 function table(results) {
     results.forEach(function (result) {
-        var goalResult = result.substring(0, 3);
+        var goalResult = result.substring(0, 3).split(":");
         var teams = result.substring(4).split("-");
-        //   .replace(/(^\s+|\s+$)/g, "");
         console.log(goalResult);
         console.log(teams);
-        var teamName = new Array(30 - teams[0].length);
-        console.log("TeamName: " + teamName);
-        var teamNameString = teams[0] + teamName.join("").toString();
-        console.log(teamNameString + ".");
+        var teamName1 = teams[0].trim() + new Array(32 - teams[0].length).join(" ").toString();
+        console.log("TeamName: " + teamName1);
+        var teamName2 = teams[1].trim() + new Array(32 - teams[1].length).join(" ").toString();
+        console.log("TeamName: " + teamName2);
+        if (Number(goalResult[0]) > Number(goalResult[1])) {
+            console.log(teamName1 + " hat gewonnen");
+        }
+        if (Number(goalResult[0]) === Number(goalResult[1])) {
+            console.log("Das Spiel war unentschieden");
+        }
+        if (Number(goalResult[0]) < Number(goalResult[1])) {
+            console.log(teamName2 + " hat gewonnen");
+        }
     });
     return results.toString();
 }

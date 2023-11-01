@@ -1,16 +1,26 @@
 export function table(results: string[]): string {
   results.forEach((result) => {
-    let goalResult: string = result.substring(0, 3);
+    let goalResult: string[] = result.substring(0, 3).split(":");
     let teams: string[] = result.substring(4).split("-");
-    //   .replace(/(^\s+|\s+$)/g, "");
 
     console.log(goalResult);
     console.log(teams);
-    let teamName: string[] = new Array(30 - teams[0].length);
+    let teamName1: string =
+      teams[0].trim() + new Array(32 - teams[0].length).join(" ").toString();
+    console.log("TeamName: " + teamName1);
+    let teamName2: string =
+      teams[1].trim() + new Array(32 - teams[1].length).join(" ").toString();
+    console.log("TeamName: " + teamName2);
 
-    console.log("TeamName: " + teamName);
-    let teamNameString: string = teams[0] + teamName.join("").toString();
-    console.log(teamNameString + ".");
+    if (Number(goalResult[0]) > Number(goalResult[1])) {
+      console.log(teamName1 + " hat gewonnen");
+    }
+    if (Number(goalResult[0]) === Number(goalResult[1])) {
+      console.log("Das Spiel war unentschieden");
+    }
+    if (Number(goalResult[0]) < Number(goalResult[1])) {
+      console.log(teamName2 + " hat gewonnen");
+    }
   });
 
   return results.toString();
