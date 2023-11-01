@@ -1,4 +1,6 @@
 export function table(results: string[]): string {
+  let tableArray: string[] = [];
+
   results.forEach((result) => {
     let goalResult: string[] = result.substring(0, 3).split(":");
     let teams: string[] = result.substring(4).split("-");
@@ -7,11 +9,14 @@ export function table(results: string[]): string {
     console.log(teams);
     let teamName1: string =
       teams[0].trim() + new Array(32 - teams[0].length).join(" ").toString();
-    console.log("TeamName: " + teamName1);
+    // console.log("TeamName: " + teamName1);
     let teamName2: string =
       teams[1].trim() + new Array(32 - teams[1].length).join(" ").toString();
-    console.log("TeamName: " + teamName2);
+    // console.log("TeamName: " + teamName2);
 
+    if (goalResult[0] === "-") {
+      console.log("Es hat noch kein Spiel stattgefunden");
+    }
     if (Number(goalResult[0]) > Number(goalResult[1])) {
       console.log(teamName1 + " hat gewonnen");
     }
@@ -27,8 +32,8 @@ export function table(results: string[]): string {
 }
 
 var results = [
-  "6:0 FC Bayern Muenchen - Werder Bremen",
-  "1:0 Eintracht Frankfurt - Schalke 04",
+  "6:0 FC Bayern Muenchen - Werder Bremen\n" +
+    "-:- Eintracht Frankfurt - Schalke 04",
   "0:2 FC Augsburg - VfL Wolfsburg",
   "1:1 Hamburger SV - FC Ingolstadt",
   "2:0 1. FC Koeln - SV Darmstadt",
