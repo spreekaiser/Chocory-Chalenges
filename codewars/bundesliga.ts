@@ -1,6 +1,19 @@
 export function table(results: string[]): string {
   let tableArray: string[] = [];
 
+  function setTableArray(
+    teamName: string,
+    playedMatches: number,
+    wonMatches: number,
+    tieMatches: number,
+    lostMatches: number,
+    shotGoals: number,
+    gottenGoals: number,
+    points: number
+  ): string {
+    return `${teamName}${playedMatches}  ${wonMatches}  ${tieMatches}  ${lostMatches}  ${shotGoals}:${gottenGoals}  ${points}`;
+  }
+
   results.forEach((result) => {
     let goalResult: string[] = result.substring(0, 3).split(":");
     let teams: string[] = result.substring(4).split("-");
@@ -15,16 +28,91 @@ export function table(results: string[]): string {
     // console.log("TeamName: " + teamName2);
 
     if (goalResult[0] === "-") {
-      console.log("Es hat noch kein Spiel stattgefunden");
+      tableArray.push(setTableArray(teamName1, 0, 0, 0, 0, 0, 0, 0));
+      tableArray.push(setTableArray(teamName2, 0, 0, 0, 0, 0, 0, 0));
+      console.log("tableArray in kein Spiel : -> ", tableArray);
     }
     if (Number(goalResult[0]) > Number(goalResult[1])) {
-      console.log(teamName1 + " hat gewonnen");
+      tableArray.push(
+        setTableArray(
+          teamName1,
+          1,
+          1,
+          0,
+          0,
+          parseInt(goalResult[0]),
+          parseInt(goalResult[1]),
+          3
+        )
+      );
+      tableArray.push(
+        setTableArray(
+          teamName2,
+          1,
+          0,
+          0,
+          1,
+          parseInt(goalResult[1]),
+          parseInt(goalResult[0]),
+          0
+        )
+      );
+      console.log("tableArray in team1 hat gewonnen : -> ", tableArray);
     }
     if (Number(goalResult[0]) === Number(goalResult[1])) {
-      console.log("Das Spiel war unentschieden");
+      tableArray.push(
+        setTableArray(
+          teamName1,
+          1,
+          0,
+          1,
+          0,
+          parseInt(goalResult[0]),
+          parseInt(goalResult[1]),
+          1
+        )
+      );
+      tableArray.push(
+        setTableArray(
+          teamName2,
+          1,
+          0,
+          1,
+          0,
+          parseInt(goalResult[0]),
+          parseInt(goalResult[1]),
+          1
+        )
+      );
+
+      console.log("tableArray in Spiel unentschieden : -> ", tableArray);
     }
     if (Number(goalResult[0]) < Number(goalResult[1])) {
-      console.log(teamName2 + " hat gewonnen");
+      tableArray.push(
+        setTableArray(
+          teamName1,
+          1,
+          0,
+          0,
+          1,
+          parseInt(goalResult[0]),
+          parseInt(goalResult[1]),
+          0
+        )
+      );
+      tableArray.push(
+        setTableArray(
+          teamName2,
+          1,
+          1,
+          0,
+          0,
+          parseInt(goalResult[1]),
+          parseInt(goalResult[0]),
+          3
+        )
+      );
+      console.log("tableArray in team2 hat gewonnen : -> ", tableArray);
     }
   });
 
@@ -32,8 +120,8 @@ export function table(results: string[]): string {
 }
 
 var results = [
-  "6:0 FC Bayern Muenchen - Werder Bremen\n" +
-    "-:- Eintracht Frankfurt - Schalke 04",
+  "6:0 FC Bayern Muenchen - Werder Bremen",
+  "-:- Eintracht Frankfurt - Schalke 04",
   "0:2 FC Augsburg - VfL Wolfsburg",
   "1:1 Hamburger SV - FC Ingolstadt",
   "2:0 1. FC Koeln - SV Darmstadt",
