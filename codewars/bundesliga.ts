@@ -18,8 +18,8 @@ export function table(results: string[]): string {
     let goalResult: string[] = result.substring(0, 3).split(":");
     let teams: string[] = result.substring(4).split("-");
 
-    console.log(goalResult);
-    console.log(teams);
+    // console.log(goalResult);
+    // console.log(teams);
     let teamName1: string =
       teams[0].trim() + new Array(32 - teams[0].length).join(" ").toString();
     // console.log("TeamName: " + teamName1);
@@ -30,7 +30,7 @@ export function table(results: string[]): string {
     if (goalResult[0] === "-") {
       tableArray.push(setTableArray(teamName1, 0, 0, 0, 0, 0, 0, 0));
       tableArray.push(setTableArray(teamName2, 0, 0, 0, 0, 0, 0, 0));
-      console.log("tableArray in kein Spiel : -> ", tableArray);
+      // console.log("tableArray in kein Spiel : -> ", tableArray);
     }
     if (Number(goalResult[0]) > Number(goalResult[1])) {
       tableArray.push(
@@ -57,7 +57,7 @@ export function table(results: string[]): string {
           0
         )
       );
-      console.log("tableArray in team1 hat gewonnen : -> ", tableArray);
+      // console.log("tableArray in team1 hat gewonnen : -> ", tableArray);
     }
     if (Number(goalResult[0]) === Number(goalResult[1])) {
       tableArray.push(
@@ -85,7 +85,7 @@ export function table(results: string[]): string {
         )
       );
 
-      console.log("tableArray in Spiel unentschieden : -> ", tableArray);
+      // console.log("tableArray in Spiel unentschieden : -> ", tableArray);
     }
     if (Number(goalResult[0]) < Number(goalResult[1])) {
       tableArray.push(
@@ -112,9 +112,52 @@ export function table(results: string[]): string {
           3
         )
       );
-      console.log("tableArray in team2 hat gewonnen : -> ", tableArray);
+      // console.log("tableArray in team2 hat gewonnen : -> ", tableArray);
     }
   });
+
+  console.log("tableArray: ", tableArray);
+
+  let teamsWith3Points: string[] = [];
+  let teamsWith1Point: string[] = [];
+  let teamsWith0Points: string[] = [];
+  function selectTeamsByPoints(points: string, team: string): void {
+    if (points === "3") {
+      teamsWith3Points.push(team);
+    }
+    if (points === "1") {
+      teamsWith1Point.push(team);
+    }
+    if (points === "0") {
+      teamsWith0Points.push(team);
+    }
+  }
+
+  tableArray.forEach((team) => {
+    selectTeamsByPoints(team.substring(team.length - 1), team);
+  });
+
+  function sortTeamsByGoalDiff(a: string, b: string): void {
+    a.localeCompare(b);
+  }
+
+  for (let i: number = 0; i < tableArray.length; i++) {
+    teamsWith3Points.sort(
+      tableArray[i].substring(42, 43),
+      tableArray[i].substring(44, 45)
+    );
+  }
+
+  console.log("teams 3Points: ", teamsWith3Points);
+  console.log("teams 1 Point: ", teamsWith1Point);
+  console.log("teams 0Points: ", teamsWith0Points);
+  console.log(
+    "goal Differenz: ",
+    parseInt(tableArray[1].substring(42, 43)) -
+      parseInt(tableArray[1].substring(44, 45))
+  );
+
+  // console.log("sorted tableArray: ", tableArray);
 
   return results.toString();
 }
