@@ -57,8 +57,23 @@ function table(results) {
     function sortTeamsByGoalDiff(a, b) {
         a.localeCompare(b);
     }
+    var _loop_1 = function (i) {
+        teamsWith3Points.sort(function (a, b) {
+            var shutGoals = tableArray[i].substring(42, 43);
+            var gottenGoals = tableArray[i].substring(44, 45);
+            if (shutGoals > gottenGoals) {
+                return 1;
+            }
+            else if (shutGoals < gottenGoals) {
+                return -1;
+            }
+            else {
+                return 0;
+            }
+        });
+    };
     for (var i = 0; i < tableArray.length; i++) {
-        teamsWith3Points.sort(tableArray[i].substring(42, 43), tableArray[i].substring(44, 45));
+        _loop_1(i);
     }
     console.log("teams 3Points: ", teamsWith3Points);
     console.log("teams 1 Point: ", teamsWith1Point);

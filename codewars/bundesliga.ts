@@ -142,10 +142,17 @@ export function table(results: string[]): string {
   }
 
   for (let i: number = 0; i < tableArray.length; i++) {
-    teamsWith3Points.sort(
-      tableArray[i].substring(42, 43),
-      tableArray[i].substring(44, 45)
-    );
+    teamsWith3Points.sort((a, b) => {
+      const shutGoals = tableArray[i].substring(42, 43);
+      const gottenGoals = tableArray[i].substring(44, 45);
+      if (shutGoals > gottenGoals) {
+        return 1;
+      } else if (shutGoals < gottenGoals) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
   }
 
   console.log("teams 3Points: ", teamsWith3Points);
