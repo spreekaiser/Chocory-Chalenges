@@ -40,9 +40,11 @@ function table(results) {
     var teamsWith3Points = [];
     var teamsWith1Point = [];
     var teamsWith0Points = [];
-    function selectTeamsByPoints(points, team) {
+    function selectTeamsByPoints(points, shutGoals, gottenGoals, team) {
         if (points === "3") {
             teamsWith3Points.push(team);
+            console.log("3Points-Team --> shutGoals: ", shutGoals);
+            console.log("3Points-Team --> gottenGoals: ", gottenGoals);
         }
         if (points === "1") {
             teamsWith1Point.push(team);
@@ -52,19 +54,18 @@ function table(results) {
         }
     }
     tableArray.forEach(function (team) {
-        selectTeamsByPoints(team.substring(team.length - 1), team);
+        selectTeamsByPoints(team.substring(team.length - 1), team.substring(42, 43), team.substring(44, 45), team);
     });
-    function sortTeamsByGoalDiff(a, b) {
-        a.localeCompare(b);
-    }
     var _loop_1 = function (i) {
         teamsWith3Points.sort(function (a, b) {
-            var shutGoals = tableArray[i].substring(42, 43);
-            var gottenGoals = tableArray[i].substring(44, 45);
-            if (shutGoals > gottenGoals) {
+            a = (parseInt(tableArray[i].substring(42, 43)) -
+                parseInt(tableArray[i].substring(44, 45))).toString();
+            b = (parseInt(tableArray[i + 1].substring(42, 43)) -
+                parseInt(tableArray[i + 1].substring(44, 45))).toString();
+            if (a > b) {
                 return 1;
             }
-            else if (shutGoals < gottenGoals) {
+            else if (a < b) {
                 return -1;
             }
             else {
@@ -72,7 +73,7 @@ function table(results) {
             }
         });
     };
-    for (var i = 0; i < tableArray.length; i++) {
+    for (var i = 0; i < tableArray.length - 1; i++) {
         _loop_1(i);
     }
     console.log("teams 3Points: ", teamsWith3Points);
@@ -87,13 +88,13 @@ exports.table = table;
 var results = [
     "6:0 FC Bayern Muenchen - Werder Bremen",
     "-:- Eintracht Frankfurt - Schalke 04",
-    "0:2 FC Augsburg - VfL Wolfsburg",
     "1:1 Hamburger SV - FC Ingolstadt",
     "2:0 1. FC Koeln - SV Darmstadt",
     "2:1 Borussia Dortmund - FSV Mainz 05",
     "2:1 Borussia Moenchengladbach - Bayer Leverkusen",
     "2:1 Hertha BSC Berlin - SC Freiburg",
     "2:2 TSG 1899 Hoffenheim - RasenBall Leipzig",
+    "0:2 FC Augsburg - VfL Wolfsburg",
 ];
 var actualTable = table(results);
 console.log(actualTable);

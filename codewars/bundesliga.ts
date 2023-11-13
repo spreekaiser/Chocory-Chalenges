@@ -121,9 +121,16 @@ export function table(results: string[]): string {
   let teamsWith3Points: string[] = [];
   let teamsWith1Point: string[] = [];
   let teamsWith0Points: string[] = [];
-  function selectTeamsByPoints(points: string, team: string): void {
+  function selectTeamsByPoints(
+    points: string,
+    shutGoals: string,
+    gottenGoals: string,
+    team: string
+  ): void {
     if (points === "3") {
       teamsWith3Points.push(team);
+      console.log("3Points-Team --> shutGoals: ", shutGoals);
+      console.log("3Points-Team --> gottenGoals: ", gottenGoals);
     }
     if (points === "1") {
       teamsWith1Point.push(team);
@@ -134,20 +141,27 @@ export function table(results: string[]): string {
   }
 
   tableArray.forEach((team) => {
-    selectTeamsByPoints(team.substring(team.length - 1), team);
+    selectTeamsByPoints(
+      team.substring(team.length - 1),
+      team.substring(42, 43),
+      team.substring(44, 45),
+      team
+    );
   });
 
-  function sortTeamsByGoalDiff(a: string, b: string): void {
-    a.localeCompare(b);
-  }
-
-  for (let i: number = 0; i < tableArray.length; i++) {
+  for (let i: number = 0; i < tableArray.length - 1; i++) {
     teamsWith3Points.sort((a, b) => {
-      const shutGoals = tableArray[i].substring(42, 43);
-      const gottenGoals = tableArray[i].substring(44, 45);
-      if (shutGoals > gottenGoals) {
+      const diffA = (a = (
+        parseInt(tableArray[i].substring(42, 43)) -
+        parseInt(tableArray[i].substring(44, 45))
+      ).toString());
+      const diffB = (b = (
+        parseInt(tableArray[i + 1].substring(42, 43)) -
+        parseInt(tableArray[i + 1].substring(44, 45))
+      ).toString());
+      if (diffA > diffB) {
         return 1;
-      } else if (shutGoals < gottenGoals) {
+      } else if (diffA < diffB) {
         return -1;
       } else {
         return 0;
@@ -172,13 +186,13 @@ export function table(results: string[]): string {
 var results = [
   "6:0 FC Bayern Muenchen - Werder Bremen",
   "-:- Eintracht Frankfurt - Schalke 04",
-  "0:2 FC Augsburg - VfL Wolfsburg",
   "1:1 Hamburger SV - FC Ingolstadt",
   "2:0 1. FC Koeln - SV Darmstadt",
   "2:1 Borussia Dortmund - FSV Mainz 05",
   "2:1 Borussia Moenchengladbach - Bayer Leverkusen",
   "2:1 Hertha BSC Berlin - SC Freiburg",
   "2:2 TSG 1899 Hoffenheim - RasenBall Leipzig",
+  "0:2 FC Augsburg - VfL Wolfsburg",
 ];
 var actualTable = table(results);
 console.log(actualTable);
